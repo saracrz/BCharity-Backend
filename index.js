@@ -30,6 +30,8 @@ const authenticate = (req, res, next) => {
   });
 };
 
+console.log({mongo : config.mongoURL});
+
 mongoose.connect(
   config.mongoURL,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },

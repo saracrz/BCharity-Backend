@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Name is required']
   },
-  email: {
+  apellido: {
     type: String,
     required: [true, 'Email is required'],
     validate: {
@@ -15,24 +15,28 @@ const userSchema = new mongoose.Schema({
     },
     unique: [true, 'This is email is registered']
   },
-  password: {
+  photoDNI: {
     type: String,
     required: true
   },
   role: {
     type: String,
-    enum: ['host', 'regular'],
-    required: false,
-    default: 'regular'
-  },
-  birthDate: {
-    type: Number,
+    enum: ['Paciente', 'Voluntario', 'Asociación'],
     required: false
   },
-  createdAt: {
-    type: Number,
-    default: Date.now() // Get a timestamp :)
-  }
+  birthdate: {
+    type: Date,
+    required: false
+  },
+  phone: String,
+  horas_acumuludas: Number,
+  adress: String,
+  
+  // createdAt: {
+  //   type: Number,
+  //   default: Date.now() // Get a timestamp :)
+  // },
+ 
 })
 
 const userModel = mongoose.model('user', userSchema)

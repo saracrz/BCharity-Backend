@@ -1,42 +1,42 @@
-const UserModel = require('../models/users.model')
+const PatientModel = require('../models/patients.model')
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  deleteUserById,
-  updateUser
+  getAllPatients,
+  getPatientById,
+  createPatient,
+  deletePatientById,
+  updatePatient
 }
 
-function getAllUsers (req, res) {
-  UserModel
+function getAllPatients(req, res) {
+  PatientModel
     .find()
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
-function getUserById (req, res) {
-  UserModel
+function getPatientById(req, res) {
+  PatientModel
     .findById(req.params.id)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
-function createUser(req, res) {
-  UserModel
+function createPatient(req, res) {
+  PatientModel
     .create(req.body)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
-function deleteUserById (req, res) {
-  UserModel
+function deletePatientById(req, res) {
+  PatientModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
     .catch(err => handdleError(err, res))
 }
 
-function updateUser (req, res) {
-  UserModel
+function updatePatient(req, res) {
+  PatientModel
     .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
@@ -45,6 +45,6 @@ function updateUser (req, res) {
     .catch((err) => handdleError(err, res))
 }
 
-function handdleError (err, res) {
+function handdleError(err, res) {
   return res.status(400).json(err)
 }

@@ -1,42 +1,42 @@
-const UserModel = require('../models/users.model')
+const ServiceModel = require('../models/Services.model')
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  deleteUserById,
-  updateUser
+  getAllServices,
+  getServiceById,
+  createService,
+  deleteServiceById,
+  updateService
 }
 
-function getAllUsers (req, res) {
-  UserModel
+function getAllServices (req, res) {
+  ServiceModel
     .find()
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
-function getUserById (req, res) {
-  UserModel
+function getServiceById (req, res) {
+  ServiceModel
     .findById(req.params.id)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
-function createUser(req, res) {
-  UserModel
+function createService(req, res) {
+  ServiceModel
     .create(req.body)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
-function deleteUserById (req, res) {
-  UserModel
+function deleteServiceById (req, res) {
+  ServiceModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
     .catch(err => handdleError(err, res))
 }
 
-function updateUser (req, res) {
-  UserModel
+function updateService (req, res) {
+  ServiceModel
     .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true

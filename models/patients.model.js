@@ -3,11 +3,11 @@ const mongoose = require ('mongoose');
 const patientSchema = new mongoose.Schema({
   name: {
     type: String, 
-    require: [true, 'El nombre es obligatorio']
+    // require: [true, 'El nombre es obligatorio']
   },
   description: {
     type: String, 
-    require: [true, 'La descripción es obligatoria']
+    // require: [true, 'La descripción es obligatoria']
   },
   photoURL: String,
   date: Date,

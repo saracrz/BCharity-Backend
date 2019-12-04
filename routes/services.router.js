@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { authenticated, me } = require("../services/auth.service");
+const { authenticated, validUser, me } = require("../services/auth.service");
 
 const {
   getAllServices,
@@ -11,7 +11,7 @@ const {
 
 router.get("/", authenticated, getAllServices); //* ?volunteer_Id="idadasdadad"
 router.get("/:id", getServiceById);//*
-router.post('/', authenticated,    createService); //*
+router.post('/', authenticated, validUser,  createService); //*
 router.delete("/:id", authenticated, me, deleteServiceById);//*
 router.put("/:id", updateService);//*
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { authenticated, me, validUser } = require("../services/auth.service");
+const { authenticated } = require("../services/auth.service");
 
 
 const {
@@ -15,8 +15,8 @@ const {
 router.get("/", authenticated, getAllVolunteers);//*
 router.get("/search", authenticated, getVolunteers);//*  ?horario=["Mañana"]
 router.get("/:id", getVolunteerById);//
-router.post('/', authenticated, validUser, createVolunteer);//*
-router.delete("/:id", authenticated, me, deleteVolunteerById);//*
-router.put("/:id", authenticated, me, updateVolunteer);//*
+router.post('/', authenticated, createVolunteer);//*
+router.delete("/:id", authenticated,  deleteVolunteerById);//*
+router.put("/:id", authenticated, updateVolunteer);//*
 
 module.exports = router;

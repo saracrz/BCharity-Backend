@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { authenticated, validUser, me } = require("../services/auth.service");
+const { authenticated, validUser} = require("../services/auth.service");
 
 const {
   getAllServices,
@@ -9,10 +9,11 @@ const {
   updateService
 } = require("../controlers/services.controller");
 
-router.get("/", authenticated, getAllServices); //* ?volunteer_Id="idadasdadad"
+router.get("/", getAllServices); //* ?volunteer_Id="idadasdadad"
 router.get("/:id", getServiceById);//*
-router.post('/', authenticated, validUser,  createService); //*
-router.delete("/:id", authenticated, me, deleteServiceById);//*
+router.post('/', createService); //*
+router.delete("/:id", authenticated, deleteServiceById);//*
 router.put("/:id", updateService);//*
 
 module.exports = router;
+ 

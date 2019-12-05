@@ -3,10 +3,10 @@ const VolunteerModel = require('../models/volunteers.model')
 module.exports = {
   getAllVolunteers,
   getVolunteers,
-    getVolunteerById,
-    createVolunteer,
-    deleteVolunteerById,
-    updateVolunteer
+  getVolunteerById,
+  createVolunteer,
+  deleteVolunteerById,
+  updateVolunteer
 }
 
 //  ?dias=["Lunes"]

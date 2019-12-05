@@ -10,14 +10,14 @@ const serviceSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'volunteer'
   }, 
-  date: Date,
+  days: String,
   startTime: String,
   endTime: String,
   confirmation: Boolean, 
   done: Boolean,
   startService: String, 
   endService: String, 
-  totalTime: Number
+  totalTime: String
 
 })
 

@@ -8,26 +8,22 @@ const volunteerSchema = new mongoose.Schema({
   },
   dias: {
    type: [String], 
-   enum: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
-   required: [true, 'El campo es obligatorio']
+   enum: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
   },
   horario: {
    type: [String],
-   enum: ['Mañana', 'Tarde'],
-   required: [true, 'El campo es obligatorio']
+   enum: ['Mañana', 'Tarde']
   },
   lugar: {
     type: String,
     enum: ['Gran Canaria', 'Tenerife', 'Lanzarote', 'Fuerteventura','La Gomera','El Hierro', 'La Palma',
-     'Madrid', 'Valencia', 'Barcelona', 'Bilbao', 'Sevilla', 'Otro'],
-    required: [true, 'El campo es obligatorio']
+     'Madrid', 'Valencia', 'Barcelona', 'Bilbao', 'Sevilla', 'Otro']
   },
   experience: {
     type: String
   },
   description: {
-    type: String,
-    required: [true, 'La descripción es obligatoria']
+    type: String
   }
 
 })

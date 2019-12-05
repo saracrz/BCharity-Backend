@@ -1,4 +1,4 @@
-const ServiceModel = require('../models/Services.model')
+const ServiceModel = require('../models/services.model')
 
 module.exports = {
   getAllServices,

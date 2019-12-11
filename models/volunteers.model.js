@@ -24,6 +24,10 @@ const volunteerSchema = new mongoose.Schema({
   },
   description: {
     type: String
+  },
+  photoURL : {
+    type : String,
+    default : () => '/assets/imgs/user-default.png'
   }
 
 })

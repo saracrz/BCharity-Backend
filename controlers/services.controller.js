@@ -2,6 +2,7 @@ const ServiceModel = require('../models/services.model')
 
 module.exports = {
   getAllServices,
+  getServices,
   getServiceById,
   createService,
   deleteServiceById,
@@ -15,6 +16,15 @@ function getAllServices (req, res) {
     .catch((err) => handdleError(err, res))
 }
 
+// search 
+function getServices (req, res) {
+  const volunteer_Id = req.query.volunteer_Id;
+  ServiceModel
+    .find( { volunteer_Id })
+    .populate('patient_Id')
+    .then(response => res.json(response))
+    .catch((err) => handdleError(err, res))
+}
 function getServiceById (req, res) {
   ServiceModel
     .findById(req.params.id)
@@ -22,6 +32,7 @@ function getServiceById (req, res) {
     .catch((err) => handdleError(err, res))
 }
 function createService(req, res) {
+  
   ServiceModel
     .create(req.body)
     .then(response => res.json(response))

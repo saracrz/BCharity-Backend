@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   photoDNI: {
-    type: String
   },
   role: {
     type: String,
@@ -29,7 +28,12 @@ const userSchema = new mongoose.Schema({
   birthdate: {
     type: String
   },
-  address: String,
+  lugar: {
+    type: String,
+
+    enum: ['Gran Canaria', 'Tenerife', 'Lanzarote', 'Fuerteventura', 'La Gomera', 'El Hierro', 'La Palma',
+      'Madrid', 'Valencia', 'Barcelona', 'Bilbao', 'Sevilla', 'Otro']
+  },
   phone: String,
   horas_acumuludas: Number
 })

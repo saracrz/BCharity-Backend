@@ -1,4 +1,5 @@
 const VolunteerModel = require('../models/volunteers.model')
+const UserModel = require('../models/users.model')
 
 module.exports = {
   getAllVolunteers,
@@ -11,6 +12,9 @@ module.exports = {
 
 //  ?dias=["Lunes"]
 function getVolunteers(req, res) {
+
+  console.log(typeof req.query.dias);
+  
   const dias = JSON.parse(req.query.dias);
   const horario = JSON.parse(req.query.horario);
   // const lugar = JSON.parse(req.query.lugar);
@@ -50,7 +54,13 @@ function getVolunteerById(req, res) {
 function createVolunteer(req, res) {
   return VolunteerModel 
     .create(req.body)
-    .then(response => res.json(response))
+    .then(response => {
+      const userID = response.userId;
+      UserModel.findByIdAndUpdate(userID, { role: 'Voluntario' }).then(userUpdated => {
+        return res.json(response)
+
+      })
+    })
     .catch((err) => handdleError(err, res))
 }
 

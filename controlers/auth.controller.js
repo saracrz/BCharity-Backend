@@ -1,4 +1,6 @@
 const UserModel = require("../models/users.model");
+const PacientModel = require("../models/patients.model");
+const VolunteerModel = require("../models/volunteers.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -16,7 +18,7 @@ function signup(req, res) {
   };
 
   UserModel.create(userBody)
-    .then(() => {
+    .then(newuser => {
       const userData = {
         username: req.body.user_name,
         email: req.body.user_email
@@ -28,7 +30,7 @@ function signup(req, res) {
         { expiresIn: "1w" }
       );
 
-      return res.json({ token: token, ...userData });
+      return res.json({ token: token, user: newuser });
     })
     .catch(err => {
       res.status(403).json({ error: err });
@@ -57,7 +59,21 @@ function login(req, res) {
           { expiresIn: "1d" }
         );
 
-        return res.json({ token: token, ...userData });
+        if (user.role === "Paciente") {
+          PacientModel.findOne({ userId: user._id }).then(pacientData => {
+            return res.json({ token, user, pacientData });
+          });
+        } else if (user.role === "Voluntario") {
+          VolunteerModel.findOne({ userId: user._id }).then(volunteerData => {
+            return res.json({
+              token,
+              user,
+              volunteerData
+            });
+          });
+        } else {
+          return res.json({ token: token, user });
+        }
       });
     })
     .catch(err => handdleError(err, res));

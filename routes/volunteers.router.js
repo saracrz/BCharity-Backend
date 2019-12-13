@@ -12,10 +12,10 @@ const {
 } = require("../controlers/volunteers.controller");
 
 
-router.get("/", authenticated, getAllVolunteers);//*
-router.get("/search", authenticated, getVolunteers);//*  ?horario=["Mañana"]
+router.get("/", getAllVolunteers);//*
+router.get("/search",  getVolunteers);//*  ?horario=["Mañana"]
 router.get("/:id", getVolunteerById);//
-router.post('/', authenticated, createVolunteer);//*
+router.post('/',  createVolunteer);//*
 router.delete("/:id", authenticated,  deleteVolunteerById);//*
 router.put("/:id", authenticated, updateVolunteer);//*
 

@@ -1,4 +1,5 @@
 const PatientModel = require('../models/patients.model')
+const UserModel = require('../models/users.model')
 
 module.exports = {
   getAllPatients,
@@ -22,9 +23,17 @@ function getPatientById(req, res) {
     .catch((err) => handdleError(err, res))
 }
 function createPatient(req, res) {
-  PatientModel
+  PatientModel 
     .create(req.body)
-    .then(response => res.json(response))
+    .then(response => {
+      const userID = response.userId;
+      UserModel.findByIdAndUpdate(userID, { role: 'Paciente' })
+        .then(userUpdated => {
+          return res.json(response)
+
+        })
+
+    })
     .catch((err) => handdleError(err, res))
 }
 

@@ -4,13 +4,28 @@ const mongoose = require('mongoose');
 const serviceSchema = new mongoose.Schema({
   patient_Id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'patient'
+    ref: 'patient',
+    required: true
   }, 
   volunteer_Id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'volunteer'
-  }, 
-  days: String,
+    ref: 'volunteer',
+    required : true
+  },
+  dias: {
+    type: [String],
+    enum: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+    required: true
+  },
+  horario: {
+    type: [String],
+    enum: ['Mañana', 'Tarde'],
+    required: true
+  },
+  message: {
+    type: String,
+    required: true
+  },
   startTime: String,
   endTime: String,
   confirmation: Boolean, 
